@@ -32,5 +32,9 @@ config.ini
 *.log
 *.parquet
 
+# Ignora os dados gerados pelo pipeline
+/data/silver/
+/data/gold/
+
 # --- Docker ---
 postgres-data/
