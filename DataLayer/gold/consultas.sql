@@ -56,13 +56,13 @@ LIMIT 10;
 
 -- 6. Análise de Parcelamento: O brasileiro parcela muito?
 SELECT 
-    pag.nr_par as parcelas,
+    pag.num_par as parcelas,
     COUNT(DISTINCT f.ntk_idn_ped) as qtd_pedidos,
     ROUND(AVG(f.vlr_tot), 2) as ticket_medio
 FROM dw.fat_ped f
 JOIN dw.dim_pag pag ON f.srk_pag = pag.srk_pag
-GROUP BY pag.nr_par
-ORDER BY pag.nr_par;
+GROUP BY pag.num_par
+ORDER BY pag.num_par;
 
 -- 7. Sazonalidade Semanal: Qual o dia mais forte de vendas?
 SELECT 
