@@ -34,8 +34,8 @@ O projeto é organizado em duas pastas principais, seguindo a separação de res
 │
 ├── Transformer
     └── ETL
-        ├── raw_to_silver.ipynb
-        └── silver_to_gold.ipynb
+        ├── etl_raw_to_silver.ipynb
+        └── etl_silver_to_gold.ipynb
 ````
 
 ## 🚀 Configuração e Execução
