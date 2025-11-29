@@ -24,7 +24,7 @@ CREATE INDEX IF NOT EXISTS idx_dim_tmp_dat ON dw.dim_tmp(dat_cmp);
 CREATE TABLE IF NOT EXISTS dw.dim_cli (
     srk_cli SERIAL PRIMARY KEY,
     ntk_idn_cli VARCHAR(32),
-    nm_cid VARCHAR(100),
+    nom_cid VARCHAR(100),
     sig_est CHAR(2)
 );
 
@@ -33,7 +33,7 @@ CREATE INDEX IF NOT EXISTS idx_dim_cli_ntk ON dw.dim_cli(ntk_idn_cli);
 CREATE TABLE IF NOT EXISTS dw.dim_vnd (
     srk_vnd SERIAL PRIMARY KEY,
     ntk_idn_vnd VARCHAR(32),
-    nm_cid VARCHAR(100),
+    nom_cid VARCHAR(100),
     sig_est CHAR(2)
 );
 
@@ -42,7 +42,7 @@ CREATE INDEX IF NOT EXISTS idx_dim_vnd_ntk ON dw.dim_vnd(ntk_idn_vnd);
 CREATE TABLE IF NOT EXISTS dw.dim_pro (
     srk_pro SERIAL PRIMARY KEY,
     ntk_idn_pro VARCHAR(32),
-    nm_cat VARCHAR(100)
+    nom_cat VARCHAR(100)
 );
 
 CREATE INDEX IF NOT EXISTS idx_dim_pro_ntk ON dw.dim_pro(ntk_idn_pro);

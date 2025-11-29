@@ -11,14 +11,14 @@ ORDER BY t.num_ano, t.num_mes;
 
 -- 2. Top 10 Categorias por Receita (Curva ABC)
 SELECT 
-    p.nm_cat,
+    p.nom_cat,
     SUM(f.vlr_tot) AS receita_total,
-    COUNT(*) AS qtd_itens_vendidos,
+    COUNT(*) AS qtd_itens,
     ROUND((SUM(f.vlr_tot) / (SELECT SUM(vlr_tot) FROM dw.fat_ped)) * 100, 2) AS perc_receita_global
 FROM dw.fat_ped f
 JOIN dw.dim_pro p ON f.srk_pro = p.srk_pro
-WHERE p.nm_cat <> 'unknown'
-GROUP BY p.nm_cat
+WHERE p.nom_cat <> 'unknown'
+GROUP BY p.nom_cat
 ORDER BY receita_total DESC
 LIMIT 10;
 
@@ -76,12 +76,12 @@ ORDER BY receita DESC;
 
 -- 8. Produtos "Problemáticos": Categorias com pior nota média
 SELECT 
-    p.nm_cat,
+    p.nom_cat,
     ROUND(AVG(f.num_ava), 2) as nota_media,
     COUNT(*) as total_vendas
 FROM dw.fat_ped f
 JOIN dw.dim_pro p ON f.srk_pro = p.srk_pro
-GROUP BY p.nm_cat
+GROUP BY p.nom_cat
 HAVING COUNT(*) > 500 -- Filtrar irrelevantes
 ORDER BY nota_media ASC
 LIMIT 10;
