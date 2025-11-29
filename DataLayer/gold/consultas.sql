@@ -11,14 +11,14 @@ ORDER BY t.num_ano, t.num_mes;
 
 -- 2. Top 10 Categorias por Receita (Curva ABC)
 SELECT 
-    p.nom_cat,
+    p.nm_cat,
     SUM(f.vlr_tot) AS receita_total,
-    COUNT(*) AS qtd_itens,
+    COUNT(*) AS qtd_itens_vendidos,
     ROUND((SUM(f.vlr_tot) / (SELECT SUM(vlr_tot) FROM dw.fat_ped)) * 100, 2) AS perc_receita_global
 FROM dw.fat_ped f
 JOIN dw.dim_pro p ON f.srk_pro = p.srk_pro
-WHERE p.nom_cat <> 'unknown'
-GROUP BY p.nom_cat
+WHERE p.nm_cat <> 'unknown'
+GROUP BY p.nm_cat
 ORDER BY receita_total DESC
 LIMIT 10;
 
@@ -56,13 +56,13 @@ LIMIT 10;
 
 -- 6. Análise de Parcelamento: O brasileiro parcela muito?
 SELECT 
-    pag.nr_par as parcelas,
+    pag.num_par as parcelas,
     COUNT(DISTINCT f.ntk_idn_ped) as qtd_pedidos,
     ROUND(AVG(f.vlr_tot), 2) as ticket_medio
 FROM dw.fat_ped f
 JOIN dw.dim_pag pag ON f.srk_pag = pag.srk_pag
-GROUP BY pag.nr_par
-ORDER BY pag.nr_par;
+GROUP BY pag.num_par
+ORDER BY pag.num_par;
 
 -- 7. Sazonalidade Semanal: Qual o dia mais forte de vendas?
 SELECT 
@@ -76,12 +76,12 @@ ORDER BY receita DESC;
 
 -- 8. Produtos "Problemáticos": Categorias com pior nota média
 SELECT 
-    p.nom_cat,
+    p.nm_cat,
     ROUND(AVG(f.num_ava), 2) as nota_media,
     COUNT(*) as total_vendas
 FROM dw.fat_ped f
 JOIN dw.dim_pro p ON f.srk_pro = p.srk_pro
-GROUP BY p.nom_cat
+GROUP BY p.nm_cat
 HAVING COUNT(*) > 500 -- Filtrar irrelevantes
 ORDER BY nota_media ASC
 LIMIT 10;
