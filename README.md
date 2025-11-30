@@ -89,12 +89,12 @@ Siga os passos abaixo para configurar o ambiente e executar o pipeline completo 
    Execute o notebook:
 
    ```
-   Transformer/ETL/raw_to_silver.ipynb
+   Transformer/ETL/etl_raw_to_silver.ipynb
    ```
 
 7. **Pipeline Silver → Gold**
    Execute o notebook:
 
    ```
-   Transformer/ETL/silver_to_gold.ipynb
+   Transformer/ETL/etl_silver_to_gold.ipynb
    ```
